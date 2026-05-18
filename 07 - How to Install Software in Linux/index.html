@@ -1,0 +1,1190 @@
+
+<!doctype html>
+<html lang="ar" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../06%20-%20Basic%20Linux%20Commands/">
+      
+      
+        <link rel="next" href="../08%20-%20Vi%20and%20Vim%20Text%20Editors/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Install Software - تعلم لينكس</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="rtl" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#07-how-to-install-software-in-linux" class="md-skip">
+          انتقل إلى المحتوى
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="عنوان العارضة">
+    <a href=".." title="تعلم لينكس" class="md-header__button md-logo" aria-label="تعلم لينكس" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            تعلم لينكس
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Install Software
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="بحث" placeholder="بحث" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="إبحث">
+        
+        <button type="reset" class="md-search__icon md-icon" title="مسح كلي" aria-label="مسح كلي" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            بدء البحث
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="نوافذ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Index/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  الرئيسية
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../01%20-%20Introduction%20to%20Operating%20Systems/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Introduction to OS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02%20-%20Introduction%20to%20Virtualization%20and%20Virtual%20Machines/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Virtualization
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03%20-%20Setup%20Linux%20Virtual%20Machine/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Setup Linux VM
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../04%20-%20Linux%20File%20System/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Linux File System
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05%20-%20GUI%20Vs%20Command%20Line%20Interface/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  GUI Vs CLI
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../06%20-%20Basic%20Linux%20Commands/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Basic Commands
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Install Software
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08%20-%20Vi%20and%20Vim%20Text%20Editors/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Vim Editor
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../09%20-%20Linux%20User%20Accounts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  User Accounts
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../10%20-%20File%20Ownership%20and%20Permissions/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Permissions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../11%20-%20Pipes%20and%20Redirects/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Pipes & Redirects
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="تصفح" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="تعلم لينكس" class="md-nav__button md-logo" aria-label="تعلم لينكس" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    تعلم لينكس
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    الرئيسية
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01%20-%20Introduction%20to%20Operating%20Systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction to OS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02%20-%20Introduction%20to%20Virtualization%20and%20Virtual%20Machines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtualization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03%20-%20Setup%20Linux%20Virtual%20Machine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Linux VM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04%20-%20Linux%20File%20System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux File System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05%20-%20GUI%20Vs%20Command%20Line%20Interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GUI Vs CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06%20-%20Basic%20Linux%20Commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install Software
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="جدول المحتويات">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      جدول المحتويات
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. طرق التثبيت في Linux
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-package-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Package Manager — المدير الذهبي
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Package Manager — المدير الذهبي">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#package-managers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        الـ Package Managers حسب التوزيعة
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-apt-advanced-package-tool-ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. APT — Advanced Package Tool (أوامر Ubuntu)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. APT — Advanced Package Tool (أوامر Ubuntu)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        التحديث أولاً!
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        التثبيت والحذف
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        البحث والمعلومات
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-deb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. تثبيت ملف .deb مباشرة
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-snap-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Snap Packages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-source-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. التثبيت من Source Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. ملخص سريع
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08%20-%20Vi%20and%20Vim%20Text%20Editors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vim Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09%20-%20Linux%20User%20Accounts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Accounts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10%20-%20File%20Ownership%20and%20Permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11%20-%20Pipes%20and%20Redirects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pipes & Redirects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="07-how-to-install-software-in-linux">07 — How to Install Software in Linux (تثبيت البرامج)</h1>
+<blockquote>
+<p><strong>السابق:</strong> <a href="../06%20-%20Basic%20Linux%20Commands/">06 - Basic Linux Commands</a> | <strong>التالي:</strong> <a href="../08%20-%20Vi%20and%20Vim%20Text%20Editors/">08 - Vi and Vim Text Editors</a></p>
+</blockquote>
+<hr />
+<h2 id="1-linux">1. طرق التثبيت في Linux</h2>
+<div class="highlight"><pre><span></span><code>طرق التثبيت
+
+ Package Manager (apt, yum, dnf...)  ← الأسهل والأفضل
+ Snap / Flatpak                       ← تنسيقات حديثة
+ تثبيت من Source Code                ← للمتقدمين
+ تنزيل مباشر (.deb, .rpm)           ← مشابه لـ .exe في Windows
+</code></pre></div>
+<hr />
+<h2 id="2-package-manager">2. Package Manager — المدير الذهبي</h2>
+<div class="admonition info">
+<p class="admonition-title"><strong>Package Manager (مدير الحزم)</strong></p>
+<p>برنامج يتحكم في تثبيت وتحديث وحذف البرامج تلقائياً. يتعامل مع التبعيات <strong>(Dependencies)</strong> بنفسه.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title"><strong>Dependencies (التبعيات)</strong></p>
+<p>البرامج التي يحتاجها البرنامج الذي تريد تثبيته ليعمل. الـ Package Manager يثبّتها تلقائياً بدلاً منك.</p>
+</div>
+<h3 id="package-managers">الـ Package Managers حسب التوزيعة</h3>
+<table>
+<thead>
+<tr>
+<th>التوزيعة</th>
+<th>Package Manager</th>
+<th>الأمر الأساسي</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ubuntu / Debian</td>
+<td><strong>APT</strong></td>
+<td><code>apt</code></td>
+</tr>
+<tr>
+<td>CentOS / RHEL</td>
+<td><strong>YUM / DNF</strong></td>
+<td><code>yum</code> أو <code>dnf</code></td>
+</tr>
+<tr>
+<td>Arch Linux</td>
+<td><strong>Pacman</strong></td>
+<td><code>pacman</code></td>
+</tr>
+<tr>
+<td>openSUSE</td>
+<td><strong>Zypper</strong></td>
+<td><code>zypper</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-apt-advanced-package-tool-ubuntu">3. APT — Advanced Package Tool (أوامر Ubuntu)</h2>
+<h3 id="_1">التحديث أولاً!</h3>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w">        </span><span class="c1"># تحديث قائمة الـ Packages المتاحة (لا يثبّت شيء)</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>upgrade<span class="w">       </span><span class="c1"># تثبيت التحديثات الفعلية</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title"><strong>فرق مهم: <code>update</code> vs <code>upgrade</code></strong></p>
+<ul>
+<li><code>apt update</code> ← يحدّث <strong>قائمة</strong> البرامج المتاحة فقط. لا يغيّر أي برنامج.</li>
+<li><code>apt upgrade</code> ← يثبّت <strong>التحديثات</strong> الفعلية.
+<strong>دايماً</strong> افعل <code>update</code> قبل <code>upgrade</code> أو تثبيت أي برنامج.</li>
+</ul>
+</div>
+<h3 id="_2">التثبيت والحذف</h3>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>nginx<span class="w">         </span><span class="c1"># تثبيت برنامج</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>curl<span class="w"> </span>wget<span class="w"> </span><span class="c1"># تثبيت أكثر من برنامج</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>remove<span class="w"> </span>nginx<span class="w">          </span><span class="c1"># حذف برنامج</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>purge<span class="w"> </span>nginx<span class="w">           </span><span class="c1"># حذف البرنامج + إعداداته</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>autoremove<span class="w">            </span><span class="c1"># حذف الـ Dependencies غير المستخدمة</span>
+</code></pre></div>
+<h3 id="_3">البحث والمعلومات</h3>
+<div class="highlight"><pre><span></span><code>apt<span class="w"> </span>search<span class="w"> </span>nginx<span class="w">               </span><span class="c1"># بحث عن برنامج</span>
+apt<span class="w"> </span>show<span class="w"> </span>nginx<span class="w">                 </span><span class="c1"># معلومات تفصيلية عن الـ Package</span>
+apt<span class="w"> </span>list<span class="w"> </span>--installed<span class="w">           </span><span class="c1"># قائمة البرامج المثبتة</span>
+</code></pre></div>
+<hr />
+<h2 id="4-deb">4. تثبيت ملف .deb مباشرة</h2>
+<div class="admonition info">
+<p class="admonition-title"><strong>ملف .deb</strong></p>
+<p>تنسيق الـ Package في Ubuntu/Debian. مشابه لملف <code>.exe</code> في Windows لكن يختلف في آلية التشغيل.</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="c1"># تحميل ملف .deb ثم تثبيته</span>
+sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>package-name.deb
+
+<span class="c1"># لو في مشكلة dependencies:</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-f
+</code></pre></div>
+<hr />
+<h2 id="5-snap-packages">5. Snap Packages</h2>
+<div class="admonition info">
+<p class="admonition-title"><strong>Snap</strong></p>
+<p>تنسيق حديث من Canonical (شركة Ubuntu). الـ Package يحتوي على كل ما يحتاجه من تبعيات داخله.</p>
+</div>
+<p><strong>المزايا:</strong>
+- يعمل على أي توزيعة Linux.
+- التحديث تلقائي.
+- آمن (Sandboxed).</p>
+<p><strong>العيوب:</strong>
+- أحياناً أبطأ في التشغيل.
+- يأخذ مساحة أكبر.</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>snap<span class="w"> </span>install<span class="w"> </span>code<span class="w">         </span><span class="c1"># تثبيت VS Code مثلاً</span>
+sudo<span class="w"> </span>snap<span class="w"> </span>list<span class="w">                 </span><span class="c1"># قائمة الـ Snaps المثبتة</span>
+sudo<span class="w"> </span>snap<span class="w"> </span>remove<span class="w"> </span>code<span class="w">          </span><span class="c1"># حذف</span>
+</code></pre></div>
+<hr />
+<h2 id="6-source-code">6. التثبيت من Source Code</h2>
+<div class="admonition lightbulb">
+<p class="admonition-title"><strong>متى تثبّت من Source Code؟</strong></p>
+<ul>
+<li>البرنامج غير متاح في الـ Package Manager.</li>
+<li>تريد إصداراً محدداً أو مُخصَّص.</li>
+<li>للتطوير والمساهمة.</li>
+</ul>
+</div>
+<div class="highlight"><pre><span></span><code><span class="c1"># الخطوات الأساسية:</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/project/repo.git
+<span class="nb">cd</span><span class="w"> </span>repo
+./configure<span class="w">          </span><span class="c1"># إعداد بيئة التثبيت</span>
+make<span class="w">                 </span><span class="c1"># بناء البرنامج (Compile)</span>
+sudo<span class="w"> </span>make<span class="w"> </span>install<span class="w">    </span><span class="c1"># التثبيت</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title"><strong>التثبيت من Source أصعب!</strong></p>
+<p>قد تحتاج تثبيت أدوات البناء أولاً:
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>build-essential
+</code></pre></div></p>
+</div>
+<hr />
+<h2 id="7">7. ملخص سريع</h2>
+<table>
+<thead>
+<tr>
+<th>الطريقة</th>
+<th>الأمر</th>
+<th>متى؟</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>APT (الموصى به)</td>
+<td><code>sudo apt install برنامج</code></td>
+<td>معظم الوقت</td>
+</tr>
+<tr>
+<td>Snap</td>
+<td><code>sudo snap install برنامج</code></td>
+<td>برامج حديثة</td>
+</tr>
+<tr>
+<td>.deb</td>
+<td><code>sudo dpkg -i file.deb</code></td>
+<td>ملفات محملة يدوياً</td>
+</tr>
+<tr>
+<td>Source</td>
+<td><code>make &amp;&amp; make install</code></td>
+<td>حالات خاصة</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<blockquote>
+<p><strong>التالي:</strong> <a href="../08%20-%20Vi%20and%20Vim%20Text%20Editors/">08 - Vi and Vim Text Editors</a></p>
+</blockquote>
+<hr />
+<p>Notes by. Ahmed Mousa<br />
+شكر خاص<br />
+Eng. <a href="https://www.youtube.com/@a0xEid">Ahmed Eid</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  عد إلى الأعلى
+</button>
+        
+      </main>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.top", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u062a\u0645 \u0627\u0644\u0646\u0633\u062e \u0627\u0644\u0649 \u0627\u0644\u062d\u0627\u0641\u0638\u0629", "clipboard.copy": "\u0646\u0633\u062e \u0625\u0644\u0649 \u0627\u0644\u062d\u0627\u0641\u0638\u0629", "search.result.more.one": "\u0623\u0643\u062b\u0631 \u0645\u0646 1 \u0641\u064a \u0647\u0630\u0647 \u0627\u0644\u0635\u0641\u062d\u0629", "search.result.more.other": "\u0623\u0643\u062b\u0631 \u0645\u0646 # \u0641\u064a \u0647\u0630\u0647 \u0627\u0644\u0635\u0641\u062d\u0629", "search.result.none": "\u0644\u0627 \u062a\u0648\u062c\u062f \u0646\u062a\u0627\u0626\u062c", "search.result.one": "\u0646\u062a\u0627\u0626\u062c \u0627\u0644\u0628\u062d\u062b \u0645\u0633\u062a\u0646\u062f \u0648\u0627\u062d\u062f", "search.result.other": "\u0646\u062a\u0627\u0626\u062c \u0627\u0644\u0628\u062d\u062b # \u0645\u0633\u062a\u0646\u062f\u0627\u062a", "search.result.placeholder": "\u0627\u0643\u062a\u0628 \u0644\u0628\u062f\u0621 \u0627\u0644\u0628\u062d\u062b", "search.result.term.missing": "\u0645\u0641\u0642\u0648\u062f", "select.version": "\u0625\u062e\u062a\u0631 \u0627\u0644\u0625\u0635\u062f\u0627\u0631"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

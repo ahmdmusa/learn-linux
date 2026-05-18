@@ -1,0 +1,1265 @@
+
+<!doctype html>
+<html lang="ar" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../10%20-%20File%20Ownership%20and%20Permissions/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Pipes & Redirects - تعلم لينكس</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="rtl" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#11-pipes-and-redirects" class="md-skip">
+          انتقل إلى المحتوى
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="عنوان العارضة">
+    <a href=".." title="تعلم لينكس" class="md-header__button md-logo" aria-label="تعلم لينكس" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            تعلم لينكس
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Pipes & Redirects
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="بحث" placeholder="بحث" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="إبحث">
+        
+        <button type="reset" class="md-search__icon md-icon" title="مسح كلي" aria-label="مسح كلي" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            بدء البحث
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="نوافذ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Index/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  الرئيسية
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../01%20-%20Introduction%20to%20Operating%20Systems/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Introduction to OS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02%20-%20Introduction%20to%20Virtualization%20and%20Virtual%20Machines/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Virtualization
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03%20-%20Setup%20Linux%20Virtual%20Machine/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Setup Linux VM
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../04%20-%20Linux%20File%20System/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Linux File System
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05%20-%20GUI%20Vs%20Command%20Line%20Interface/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  GUI Vs CLI
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../06%20-%20Basic%20Linux%20Commands/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Basic Commands
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../07%20-%20How%20to%20Install%20Software%20in%20Linux/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Install Software
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08%20-%20Vi%20and%20Vim%20Text%20Editors/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Vim Editor
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../09%20-%20Linux%20User%20Accounts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  User Accounts
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../10%20-%20File%20Ownership%20and%20Permissions/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Permissions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Pipes & Redirects
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="تصفح" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="تعلم لينكس" class="md-nav__button md-logo" aria-label="تعلم لينكس" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    تعلم لينكس
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    الرئيسية
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01%20-%20Introduction%20to%20Operating%20Systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction to OS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02%20-%20Introduction%20to%20Virtualization%20and%20Virtual%20Machines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtualization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03%20-%20Setup%20Linux%20Virtual%20Machine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Linux VM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04%20-%20Linux%20File%20System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux File System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05%20-%20GUI%20Vs%20Command%20Line%20Interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GUI Vs CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06%20-%20Basic%20Linux%20Commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07%20-%20How%20to%20Install%20Software%20in%20Linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08%20-%20Vi%20and%20Vim%20Text%20Editors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vim Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09%20-%20Linux%20User%20Accounts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Accounts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10%20-%20File%20Ownership%20and%20Permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pipes & Redirects
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pipes & Redirects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="جدول المحتويات">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      جدول المحتويات
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. المفهوم الأساسي
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-output-redirect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Output Redirect (إعادة توجيه الخرج)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Output Redirect (إعادة توجيه الخرج)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        &gt; — كتابة لملف (تستبدل المحتوى)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#append" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        &gt;&gt; — إضافة لملف (Append)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-error-redirect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Error Redirect
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-input-redirect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Input Redirect (إعادة توجيه الدخل)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-pipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. الـ Pipe | — ربط الأوامر
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. الـ Pipe | — ربط الأوامر">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        أمثلة عملية:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-pipes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. أوامر مفيدة مع الـ Pipes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. أوامر مفيدة مع الـ Pipes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wc-word-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        wc — Word Count (عداد)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sort — ترتيب
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uniq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        uniq — حذف المكرر
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tee — الإرسال للشاشة والملف معاً
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devnull" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /dev/null — سلة المهملات
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. مثال عملي شامل
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-redirects-pipes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. ملخص الـ Redirects والـ Pipes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. ما التالي؟
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="11-pipes-and-redirects">11 — Pipes and Redirects (الأنابيب وإعادة التوجيه)</h1>
+<blockquote>
+<p><strong>السابق:</strong> <a href="../10%20-%20File%20Ownership%20and%20Permissions/">10 - File Ownership and Permissions</a></p>
+</blockquote>
+<hr />
+<h2 id="1">1. المفهوم الأساسي</h2>
+<p>في Linux، كل أمر له:
+- <strong>Standard Input (stdin):</strong> مصدر البيانات (عادةً الكيبورد).
+- <strong>Standard Output (stdout):</strong> وجهة الخروج (عادةً الشاشة).
+- <strong>Standard Error (stderr):</strong> وجهة الأخطاء (عادةً الشاشة).</p>
+<div class="highlight"><pre><span></span><code>[Keyboard] → stdin → [Command] → stdout → [Screen]
+                              → stderr → [Screen]
+</code></pre></div>
+<p>الـ <strong>Redirect</strong> يغير هذه الاتجاهات، والـ <strong>Pipe</strong> يربط أوامر ببعضها.</p>
+<hr />
+<h2 id="2-output-redirect">2. Output Redirect (إعادة توجيه الخرج)</h2>
+<h3 id="_1"><code>&gt;</code> — كتابة لملف (تستبدل المحتوى)</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello World&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>file.txt<span class="w">      </span><span class="c1"># إنشاء/استبدال محتوى file.txt</span>
+ls<span class="w"> </span>-la<span class="w"> </span>&gt;<span class="w"> </span>listing.txt<span class="w">               </span><span class="c1"># حفظ نتيجة ls في ملف</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title"><strong><code>&gt;</code> يحذف المحتوى القديم!</strong></p>
+<p>إذا كان الملف موجوداً، سيُحذف محتواه ويُستبدل. استخدم <code>&gt;&gt;</code> إذا أردت الإضافة.</p>
+</div>
+<h3 id="append"><code>&gt;&gt;</code> — إضافة لملف (Append)</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;New line&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>file.txt<span class="w">        </span><span class="c1"># إضافة سطر بدون حذف القديم</span>
+date<span class="w"> </span>&gt;&gt;<span class="w"> </span>log.txt<span class="w">                    </span><span class="c1"># إضافة التاريخ لنهاية الملف</span>
+</code></pre></div>
+<hr />
+<h2 id="3-error-redirect">3. Error Redirect</h2>
+<div class="highlight"><pre><span></span><code><span class="nb">command</span><span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>error.log<span class="w">              </span><span class="c1"># توجيه الأخطاء فقط لملف</span>
+<span class="nb">command</span><span class="w"> </span><span class="m">2</span>&gt;&gt;<span class="w"> </span>error.log<span class="w">             </span><span class="c1"># إضافة الأخطاء للملف</span>
+<span class="nb">command</span><span class="w"> </span>&gt;<span class="w"> </span>output.txt<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>error.log<span class="w"> </span><span class="c1"># الخرج لملف والأخطاء لملف آخر</span>
+<span class="nb">command</span><span class="w"> </span>&gt;<span class="w"> </span>all.txt<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w">            </span><span class="c1"># الخرج والأخطاء معاً لنفس الملف</span>
+<span class="nb">command</span><span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>all.txt<span class="w">                </span><span class="c1"># نفس الشيء (اختصار)</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title"><strong>الأرقام:</strong></p>
+<ul>
+<li><code>0</code> = stdin | <code>1</code> = stdout | <code>2</code> = stderr</li>
+<li><code>2&gt;&amp;1</code> = وجّه stderr لنفس وجهة stdout</li>
+</ul>
+</div>
+<hr />
+<h2 id="4-input-redirect">4. Input Redirect (إعادة توجيه الدخل)</h2>
+<div class="highlight"><pre><span></span><code><span class="nb">command</span><span class="w"> </span>&lt;<span class="w"> </span>input.txt<span class="w">               </span><span class="c1"># الأمر يقرأ من الملف بدلاً من الكيبورد</span>
+mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span>database<span class="w"> </span>&lt;<span class="w"> </span>dump.sql<span class="w">  </span><span class="c1"># مثال شائع جداً</span>
+</code></pre></div>
+<hr />
+<h2 id="5-pipe">5. الـ Pipe <code>|</code> — ربط الأوامر</h2>
+<div class="admonition info">
+<p class="admonition-title"><strong>Pipe (الأنبوب)</strong></p>
+<p>يأخذ <strong>خرج (stdout)</strong> أمر ويجعله <strong>دخل (stdin)</strong> للأمر التالي.
+<div class="highlight"><pre><span></span><code>command1 | command2 | command3
+</code></pre></div></p>
+</div>
+<h3 id="_2">أمثلة عملية:</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># عرض الملفات وتصفيتها</span>
+ls<span class="w"> </span>-la<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;.txt&quot;</span>
+
+<span class="c1"># عرض أول 10 عمليات من الأكثر استهلاكاً للـ CPU</span>
+ps<span class="w"> </span>aux<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-k3<span class="w"> </span>-rn<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10
+
+<span class="c1"># عد عدد الملفات في المجلد</span>
+ls<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+
+<span class="c1"># البحث في الـ History</span>
+<span class="nb">history</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;apt install&quot;</span>
+
+<span class="c1"># عرض مستخدمين معينين من /etc/passwd</span>
+cat<span class="w"> </span>/etc/passwd<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;/bin/bash&quot;</span>
+
+<span class="c1"># فلترة الـ Logs</span>
+cat<span class="w"> </span>/var/log/syslog<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-20
+</code></pre></div>
+<hr />
+<h2 id="6-pipes">6. أوامر مفيدة مع الـ Pipes</h2>
+<h3 id="wc-word-count"><code>wc</code> — Word Count (عداد)</h3>
+<div class="highlight"><pre><span></span><code>wc<span class="w"> </span>-l<span class="w"> </span>file.txt<span class="w">          </span><span class="c1"># عدد الأسطر</span>
+wc<span class="w"> </span>-w<span class="w"> </span>file.txt<span class="w">          </span><span class="c1"># عدد الكلمات</span>
+wc<span class="w"> </span>-c<span class="w"> </span>file.txt<span class="w">          </span><span class="c1"># عدد الأحرف</span>
+ls<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="w">              </span><span class="c1"># عدد الملفات في المجلد</span>
+</code></pre></div>
+<h3 id="sort"><code>sort</code> — ترتيب</h3>
+<div class="highlight"><pre><span></span><code>sort<span class="w"> </span>file.txt<span class="w">           </span><span class="c1"># ترتيب أبجدي</span>
+sort<span class="w"> </span>-n<span class="w"> </span>file.txt<span class="w">        </span><span class="c1"># ترتيب رقمي</span>
+sort<span class="w"> </span>-r<span class="w"> </span>file.txt<span class="w">        </span><span class="c1"># ترتيب عكسي</span>
+sort<span class="w"> </span>-u<span class="w"> </span>file.txt<span class="w">        </span><span class="c1"># ترتيب + حذف المكرر</span>
+</code></pre></div>
+<h3 id="uniq"><code>uniq</code> — حذف المكرر</h3>
+<div class="highlight"><pre><span></span><code>sort<span class="w"> </span>file.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w">           </span><span class="c1"># حذف الأسطر المكررة</span>
+sort<span class="w"> </span>file.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w">        </span><span class="c1"># عداد التكرار</span>
+</code></pre></div>
+<h3 id="tee"><code>tee</code> — الإرسال للشاشة والملف معاً</h3>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-la<span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>listing.txt<span class="w">       </span><span class="c1"># يعرض على الشاشة ويحفظ في الملف</span>
+<span class="nb">command</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>log.txt<span class="w">       </span><span class="c1"># نفس الشيء مع Append</span>
+</code></pre></div>
+<h3 id="devnull"><code>/dev/null</code> — سلة المهملات</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">command</span><span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w">       </span><span class="c1"># تجاهل كل الخرج والأخطاء</span>
+<span class="nb">command</span><span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>/dev/null<span class="w">           </span><span class="c1"># تجاهل الأخطاء فقط</span>
+</code></pre></div>
+<div class="admonition lightbulb">
+<p class="admonition-title"><strong><code>/dev/null</code> ببساطة:</strong></p>
+<p>ملف خاص يبتلع كل ما يُكتب فيه. مفيد لإخفاء الخرج غير المطلوب.</p>
+</div>
+<hr />
+<h2 id="7">7. مثال عملي شامل</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># سيناريو: أريد معرفة أكثر 5 ملفات حجماً في المجلد الحالي</span>
+ls<span class="w"> </span>-lS<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-6
+
+<span class="c1"># سيناريو: البحث عن كلمة &quot;error&quot; في الـ Logs وحفظ النتيجة</span>
+grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="w"> </span>/var/log/syslog<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-50<span class="w"> </span>&gt;<span class="w"> </span>errors.txt
+
+<span class="c1"># سيناريو: عدد المستخدمين الذين لديهم /bin/bash</span>
+cat<span class="w"> </span>/etc/passwd<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;/bin/bash&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+
+<span class="c1"># سيناريو: عرض العمليات الجارية وفلترة برنامج معين</span>
+ps<span class="w"> </span>aux<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>nginx
+</code></pre></div>
+<hr />
+<h2 id="8-redirects-pipes">8. ملخص الـ Redirects والـ Pipes</h2>
+<table>
+<thead>
+<tr>
+<th>الرمز</th>
+<th>الوظيفة</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&gt;</code></td>
+<td>خرج لملف (يستبدل)</td>
+</tr>
+<tr>
+<td><code>&gt;&gt;</code></td>
+<td>خرج لملف (يضيف)</td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td>دخل من ملف</td>
+</tr>
+<tr>
+<td><code>2&gt;</code></td>
+<td>أخطاء لملف</td>
+</tr>
+<tr>
+<td><code>2&gt;&amp;1</code></td>
+<td>أخطاء + خرج معاً</td>
+</tr>
+<tr>
+<td><code>\|</code></td>
+<td>ربط أمرين (Pipe)</td>
+</tr>
+<tr>
+<td><code>\| tee file</code></td>
+<td>خرج للشاشة والملف معاً</td>
+</tr>
+<tr>
+<td><code>&gt; /dev/null</code></td>
+<td>تجاهل الخرج</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9">9. ما التالي؟</h2>
+<div class="admonition lightbulb">
+<p class="admonition-title"><strong>الخطوات القادمة بعد هذه المحاضرات:</strong></p>
+<ul>
+<li><strong>Shell Scripting (Bash Scripting):</strong> كتابة سكريبتات لأتمتة المهام.</li>
+<li><strong>Ansible:</strong> أداة قوية لأتمتة إدارة السيرفرات.</li>
+<li><strong>SSH:</strong> الاتصال بالسيرفرات عن بُعد.</li>
+<li><strong>Cron Jobs:</strong> جدولة المهام التلقائية.</li>
+</ul>
+</div>
+<hr />
+<hr />
+<p>Notes by. Ahmed Mousa<br />
+شكر خاص<br />
+Eng. <a href="https://www.youtube.com/@a0xEid">Ahmed Eid</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  عد إلى الأعلى
+</button>
+        
+      </main>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.top", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u062a\u0645 \u0627\u0644\u0646\u0633\u062e \u0627\u0644\u0649 \u0627\u0644\u062d\u0627\u0641\u0638\u0629", "clipboard.copy": "\u0646\u0633\u062e \u0625\u0644\u0649 \u0627\u0644\u062d\u0627\u0641\u0638\u0629", "search.result.more.one": "\u0623\u0643\u062b\u0631 \u0645\u0646 1 \u0641\u064a \u0647\u0630\u0647 \u0627\u0644\u0635\u0641\u062d\u0629", "search.result.more.other": "\u0623\u0643\u062b\u0631 \u0645\u0646 # \u0641\u064a \u0647\u0630\u0647 \u0627\u0644\u0635\u0641\u062d\u0629", "search.result.none": "\u0644\u0627 \u062a\u0648\u062c\u062f \u0646\u062a\u0627\u0626\u062c", "search.result.one": "\u0646\u062a\u0627\u0626\u062c \u0627\u0644\u0628\u062d\u062b \u0645\u0633\u062a\u0646\u062f \u0648\u0627\u062d\u062f", "search.result.other": "\u0646\u062a\u0627\u0626\u062c \u0627\u0644\u0628\u062d\u062b # \u0645\u0633\u062a\u0646\u062f\u0627\u062a", "search.result.placeholder": "\u0627\u0643\u062a\u0628 \u0644\u0628\u062f\u0621 \u0627\u0644\u0628\u062d\u062b", "search.result.term.missing": "\u0645\u0641\u0642\u0648\u062f", "select.version": "\u0625\u062e\u062a\u0631 \u0627\u0644\u0625\u0635\u062f\u0627\u0631"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

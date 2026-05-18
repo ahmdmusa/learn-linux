@@ -1,0 +1,1262 @@
+
+<!doctype html>
+<html lang="ar" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../07%20-%20How%20to%20Install%20Software%20in%20Linux/">
+      
+      
+        <link rel="next" href="../09%20-%20Linux%20User%20Accounts/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Vim Editor - تعلم لينكس</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="rtl" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#08-vi-and-vim-text-editors" class="md-skip">
+          انتقل إلى المحتوى
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="عنوان العارضة">
+    <a href=".." title="تعلم لينكس" class="md-header__button md-logo" aria-label="تعلم لينكس" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            تعلم لينكس
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Vim Editor
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="بحث" placeholder="بحث" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="إبحث">
+        
+        <button type="reset" class="md-search__icon md-icon" title="مسح كلي" aria-label="مسح كلي" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            بدء البحث
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="نوافذ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Index/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  الرئيسية
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../01%20-%20Introduction%20to%20Operating%20Systems/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Introduction to OS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02%20-%20Introduction%20to%20Virtualization%20and%20Virtual%20Machines/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Virtualization
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03%20-%20Setup%20Linux%20Virtual%20Machine/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Setup Linux VM
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../04%20-%20Linux%20File%20System/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Linux File System
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05%20-%20GUI%20Vs%20Command%20Line%20Interface/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  GUI Vs CLI
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../06%20-%20Basic%20Linux%20Commands/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Basic Commands
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../07%20-%20How%20to%20Install%20Software%20in%20Linux/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Install Software
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Vim Editor
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../09%20-%20Linux%20User%20Accounts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  User Accounts
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../10%20-%20File%20Ownership%20and%20Permissions/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Permissions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../11%20-%20Pipes%20and%20Redirects/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Pipes & Redirects
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="تصفح" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="تعلم لينكس" class="md-nav__button md-logo" aria-label="تعلم لينكس" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    تعلم لينكس
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    الرئيسية
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01%20-%20Introduction%20to%20Operating%20Systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction to OS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02%20-%20Introduction%20to%20Virtualization%20and%20Virtual%20Machines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtualization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03%20-%20Setup%20Linux%20Virtual%20Machine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Linux VM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04%20-%20Linux%20File%20System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux File System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05%20-%20GUI%20Vs%20Command%20Line%20Interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GUI Vs CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06%20-%20Basic%20Linux%20Commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07%20-%20How%20to%20Install%20Software%20in%20Linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vim Editor
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vim Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="جدول المحتويات">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      جدول المحتويات
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-vim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ما هو Vim؟
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. المفهوم الأساسي: الـ Modes (الأوضاع)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. فتح وإنشاء ملف
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-normal-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Normal Mode (الوضع الافتراضي)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Normal Mode (الوضع الافتراضي)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normal-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        التنقل في Normal Mode:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-insert-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. الدخول لـ Insert Mode (وضع الكتابة)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-normal-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. أوامر التعديل في Normal Mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-command-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Command Mode (وضع الأوامر)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-vim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. البحث في Vim
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. ورقة المرجع السريع (Cheat Sheet)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09%20-%20Linux%20User%20Accounts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Accounts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10%20-%20File%20Ownership%20and%20Permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11%20-%20Pipes%20and%20Redirects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pipes & Redirects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="08-vi-and-vim-text-editors">08 - Vi and Vim Text Editors</h1>
+<blockquote>
+<p><strong>السابق:</strong> <a href="../07%20-%20How%20to%20Install%20Software%20in%20Linux/">07 - How to Install Software in Linux</a> | <strong>التالي:</strong> <a href="../09%20-%20Linux%20User%20Accounts/">09 - Linux User Accounts</a></p>
+</blockquote>
+<hr />
+<h2 id="1-vim">1. ما هو Vim؟</h2>
+<div class="admonition info">
+<p class="admonition-title"><strong>Vi / Vim (Vi IMproved)</strong></p>
+<p>محرر نصوص يعمل في الـ Terminal. <strong>Vim</strong> هو نسخة محسّنة من <strong>Vi</strong>.<br />
+موجود في <strong>كل</strong> توزيعات Linux تقريباً — لذلك لازم تعرفه.</p>
+</div>
+<div class="admonition lightbulb">
+<p class="admonition-title"><strong>ليه نستخدم Vim وفيه محررات أسهل؟</strong></p>
+<ul>
+<li>متاح دائماً حتى في السيرفرات البدائية بدون GUI.</li>
+<li>عبر SSH لا تستطيع فتح VS Code أو Notepad.</li>
+<li>بعد إتقانه يكون سريع جداً.</li>
+</ul>
+</div>
+<hr />
+<h2 id="2-modes">2. المفهوم الأساسي: الـ Modes (الأوضاع)</h2>
+<div class="admonition warning">
+<p class="admonition-title"><strong>أهم شيء في Vim هو فهم الـ Modes!</strong></p>
+<p>Vim لا يعمل كمحرر عادي. له أوضاع مختلفة وكل وضع له وظيفة.</p>
+</div>
+<div class="highlight"><pre><span></span><code>Vim Modes:
+
+  Normal Mode  ← الوضع الافتراضي        
+  (للتنقل والأوامر، لا للكتابة)         
+          i أو a أو o                  
+
+  Insert Mode  ← وضع الكتابة            
+          Esc                          
+
+  Normal Mode                           
+          :                            
+
+  Command Mode ← وضع الأوامر (حفظ/خروج) 
+</code></pre></div>
+<hr />
+<h2 id="3">3. فتح وإنشاء ملف</h2>
+<div class="highlight"><pre><span></span><code>vim<span class="w"> </span>filename.txt<span class="w">      </span><span class="c1"># فتح أو إنشاء ملف</span>
+vi<span class="w"> </span>filename.txt<span class="w">       </span><span class="c1"># نفس الشيء (vi الأقدم)</span>
+</code></pre></div>
+<hr />
+<h2 id="4-normal-mode">4. Normal Mode (الوضع الافتراضي)</h2>
+<p>عند فتح Vim، أنت في <strong>Normal Mode</strong>. لا تستطيع الكتابة هنا.</p>
+<h3 id="normal-mode">التنقل في Normal Mode:</h3>
+<p><div class="highlight"><pre><span></span><code>h ← يسار  |  l → يمين  |  j ↓ أسفل  |  k ↑ أعلى
+</code></pre></div>
+(أو استخدم أسهم الكيبورد)</p>
+<table>
+<thead>
+<tr>
+<th>الأمر</th>
+<th>الوظيفة</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gg</code></td>
+<td>الذهاب لأول الملف</td>
+</tr>
+<tr>
+<td><code>G</code></td>
+<td>الذهاب لآخر الملف</td>
+</tr>
+<tr>
+<td><code>5G</code></td>
+<td>الذهاب للسطر 5</td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td>أول السطر</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>آخر السطر</td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>كلمة للأمام</td>
+</tr>
+<tr>
+<td><code>b</code></td>
+<td>كلمة للخلف</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-insert-mode">5. الدخول لـ Insert Mode (وضع الكتابة)</h2>
+<table>
+<thead>
+<tr>
+<th>المفتاح</th>
+<th>الوظيفة</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>i</code></td>
+<td>Insert قبل المؤشر</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>Append بعد المؤشر</td>
+</tr>
+<tr>
+<td><code>o</code></td>
+<td>سطر جديد تحت الحالي والدخول للكتابة</td>
+</tr>
+<tr>
+<td><code>O</code></td>
+<td>سطر جديد فوق الحالي</td>
+</tr>
+<tr>
+<td><code>I</code></td>
+<td>الذهاب لأول السطر والكتابة</td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td>الذهاب لآخر السطر والكتابة</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">الخروج من Insert Mode → اضغط <strong><code>Esc</code></strong></p>
+</div>
+<hr />
+<h2 id="6-normal-mode">6. أوامر التعديل في Normal Mode</h2>
+<table>
+<thead>
+<tr>
+<th>الأمر</th>
+<th>الوظيفة</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dd</code></td>
+<td>حذف سطر كامل</td>
+</tr>
+<tr>
+<td><code>d5d</code> أو <code>5dd</code></td>
+<td>حذف 5 أسطر</td>
+</tr>
+<tr>
+<td><code>yy</code></td>
+<td>نسخ سطر (Yank)</td>
+</tr>
+<tr>
+<td><code>p</code></td>
+<td>لصق (Paste)</td>
+</tr>
+<tr>
+<td><code>u</code></td>
+<td>Undo (تراجع)</td>
+</tr>
+<tr>
+<td><code>Ctrl + r</code></td>
+<td>Redo (إعادة)</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>حذف حرف</td>
+</tr>
+<tr>
+<td><code>cw</code></td>
+<td>تغيير كلمة</td>
+</tr>
+<tr>
+<td><code>r</code></td>
+<td>استبدال حرف واحد</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-command-mode">7. Command Mode (وضع الأوامر)</h2>
+<p>للدخول: اضغط <code>:</code> في Normal Mode</p>
+<table>
+<thead>
+<tr>
+<th>الأمر</th>
+<th>الوظيفة</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:w</code></td>
+<td>حفظ (Write)</td>
+</tr>
+<tr>
+<td><code>:q</code></td>
+<td>خروج (Quit)</td>
+</tr>
+<tr>
+<td><code>:wq</code></td>
+<td>حفظ وخروج</td>
+</tr>
+<tr>
+<td><code>:q!</code></td>
+<td>خروج بدون حفظ (قسري)</td>
+</tr>
+<tr>
+<td><code>:wq!</code></td>
+<td>حفظ وخروج قسري</td>
+</tr>
+<tr>
+<td><code>:set number</code></td>
+<td>إظهار أرقام الأسطر</td>
+</tr>
+<tr>
+<td><code>:/كلمة</code></td>
+<td>البحث عن كلمة</td>
+</tr>
+<tr>
+<td><code>:s/قديم/جديد/g</code></td>
+<td>استبدال في السطر الحالي</td>
+</tr>
+<tr>
+<td><code>:%s/قديم/جديد/g</code></td>
+<td>استبدال في كل الملف</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-vim">8. البحث في Vim</h2>
+<div class="highlight"><pre><span></span><code>/كلمة     ← بحث للأمام
+?كلمة     ← بحث للخلف
+n         ← النتيجة التالية
+N         ← النتيجة السابقة
+</code></pre></div>
+<hr />
+<h2 id="9-cheat-sheet">9. ورقة المرجع السريع (Cheat Sheet)</h2>
+<div class="highlight"><pre><span></span><code>               VIM CHEAT SHEET                   
+
+  الدخول للكتابة  i a o O I A                   
+  الخروج منها    Esc                           
+
+  التنقل         hjkl  gg  G  0  $  w  b       
+
+  حذف            dd  x  dw                      
+  نسخ/لصق        yy  p                          
+  تراجع          u  Ctrl+r                      
+
+  حفظ وخروج      :wq  :q!  :w  :q              
+  بحث            /كلمة  n  N                   
+  استبدال        :%s/old/new/g                  
+</code></pre></div>
+<div class="admonition lightbulb">
+<p class="admonition-title"><strong>نصيحة للتعلم:</strong></p>
+<p>شغّل <code>vimtutor</code> في الـ Terminal — تعليم تفاعلي مدمج مع Vim!
+<div class="highlight"><pre><span></span><code>vimtutor
+</code></pre></div></p>
+</div>
+<hr />
+<blockquote>
+<p><strong>التالي:</strong> <a href="../09%20-%20Linux%20User%20Accounts/">09 - Linux User Accounts</a></p>
+</blockquote>
+<hr />
+<p>Notes by. Ahmed Mousa<br />
+شكر خاص<br />
+Eng. <a href="https://www.youtube.com/@a0xEid">Ahmed Eid</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  عد إلى الأعلى
+</button>
+        
+      </main>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.top", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u062a\u0645 \u0627\u0644\u0646\u0633\u062e \u0627\u0644\u0649 \u0627\u0644\u062d\u0627\u0641\u0638\u0629", "clipboard.copy": "\u0646\u0633\u062e \u0625\u0644\u0649 \u0627\u0644\u062d\u0627\u0641\u0638\u0629", "search.result.more.one": "\u0623\u0643\u062b\u0631 \u0645\u0646 1 \u0641\u064a \u0647\u0630\u0647 \u0627\u0644\u0635\u0641\u062d\u0629", "search.result.more.other": "\u0623\u0643\u062b\u0631 \u0645\u0646 # \u0641\u064a \u0647\u0630\u0647 \u0627\u0644\u0635\u0641\u062d\u0629", "search.result.none": "\u0644\u0627 \u062a\u0648\u062c\u062f \u0646\u062a\u0627\u0626\u062c", "search.result.one": "\u0646\u062a\u0627\u0626\u062c \u0627\u0644\u0628\u062d\u062b \u0645\u0633\u062a\u0646\u062f \u0648\u0627\u062d\u062f", "search.result.other": "\u0646\u062a\u0627\u0626\u062c \u0627\u0644\u0628\u062d\u062b # \u0645\u0633\u062a\u0646\u062f\u0627\u062a", "search.result.placeholder": "\u0627\u0643\u062a\u0628 \u0644\u0628\u062f\u0621 \u0627\u0644\u0628\u062d\u062b", "search.result.term.missing": "\u0645\u0641\u0642\u0648\u062f", "select.version": "\u0625\u062e\u062a\u0631 \u0627\u0644\u0625\u0635\u062f\u0627\u0631"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
