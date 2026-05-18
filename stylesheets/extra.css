@@ -161,3 +161,9 @@ h1 {
 .md-content article h1 + p {
   text-align: center !important;
 }
+
+/* Preconnect hint already in HTML — add font-display swap */
+@font-face {
+  font-family: 'Amiri';
+  font-display: swap;
+}
