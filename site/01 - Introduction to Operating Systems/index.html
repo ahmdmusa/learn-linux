@@ -1,0 +1,1487 @@
+
+<!doctype html>
+<html lang="ar" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Index/">
+      
+      
+        <link rel="next" href="../02%20-%20Introduction%20to%20Virtualization%20and%20Virtual%20Machines/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Introduction to OS - تعلم لينكس</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="rtl" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#01-introduction-to-operating-systems" class="md-skip">
+          انتقل إلى المحتوى
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="عنوان العارضة">
+    <a href=".." title="تعلم لينكس" class="md-header__button md-logo" aria-label="تعلم لينكس" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            تعلم لينكس
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction to OS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="بحث" placeholder="بحث" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="إبحث">
+        
+        <button type="reset" class="md-search__icon md-icon" title="مسح كلي" aria-label="مسح كلي" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            بدء البحث
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="نوافذ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Index/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  الرئيسية
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Introduction to OS
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02%20-%20Introduction%20to%20Virtualization%20and%20Virtual%20Machines/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Virtualization
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03%20-%20Setup%20Linux%20Virtual%20Machine/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Setup Linux VM
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../04%20-%20Linux%20File%20System/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Linux File System
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05%20-%20GUI%20Vs%20Command%20Line%20Interface/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  GUI Vs CLI
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../06%20-%20Basic%20Linux%20Commands/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Basic Commands
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../07%20-%20How%20to%20Install%20Software%20in%20Linux/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Install Software
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08%20-%20Vi%20and%20Vim%20Text%20Editors/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Vim Editor
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../09%20-%20Linux%20User%20Accounts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  User Accounts
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../10%20-%20File%20Ownership%20and%20Permissions/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Permissions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../11%20-%20Pipes%20and%20Redirects/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Pipes & Redirects
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="تصفح" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="تعلم لينكس" class="md-nav__button md-logo" aria-label="تعلم لينكس" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    تعلم لينكس
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    الرئيسية
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction to OS
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction to OS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="جدول المحتويات">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      جدول المحتويات
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ما هو نظام التشغيل؟
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-system-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. طبقات النظام (System Layers)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-os" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. المهام الرئيسية للـ OS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. المهام الرئيسية للـ OS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-resource-allocation-and-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Resource Allocation and Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Resource Allocation and Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#process-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        أ) Process Management (إدارة العمليات)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ب) Memory Management (إدارة الذاكرة)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-system-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ج) File System Management (إدارة نظام الملفات)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#device-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        د) Device Management (إدارة الأجهزة)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        هـ) Security &amp; Access Control (الأمان والتحكم في الوصول)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-security-networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ذ) مهام اخري - Security / Networking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ذ) مهام اخري - Security / Networking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        كيف data بتمشي داخل النظام
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. أنواع أنظمة التشغيل الشائعة
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. ليه Linux تحديداً؟
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. مكونات الـ Linux
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. مكونات الـ Linux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        الوظيفة للـ Kernel :
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kernel_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        كيف نتعامل مع الـ Kernel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#main-operating-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main Operating Systems
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. ملخص سريع
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02%20-%20Introduction%20to%20Virtualization%20and%20Virtual%20Machines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtualization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03%20-%20Setup%20Linux%20Virtual%20Machine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Linux VM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04%20-%20Linux%20File%20System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux File System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05%20-%20GUI%20Vs%20Command%20Line%20Interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GUI Vs CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06%20-%20Basic%20Linux%20Commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07%20-%20How%20to%20Install%20Software%20in%20Linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08%20-%20Vi%20and%20Vim%20Text%20Editors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vim Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09%20-%20Linux%20User%20Accounts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Accounts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10%20-%20File%20Ownership%20and%20Permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11%20-%20Pipes%20and%20Redirects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pipes & Redirects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="01-introduction-to-operating-systems">01 — Introduction to Operating Systems (مقدمة عن أنظمة التشغيل)</h1>
+<blockquote>
+<p><strong>التالي:</strong> <a href="../02%20-%20Introduction%20to%20Virtualization%20and%20Virtual%20Machines/">02 - Introduction to Virtualization and Virtual Machines</a></p>
+</blockquote>
+<hr />
+<h2 id="1">1. ما هو نظام التشغيل؟</h2>
+<div class="admonition info">
+<p class="admonition-title"><strong>Operating System (OS) — نظام التشغيل</strong></p>
+<p>هو برنامج أساسي يعمل كـ <strong>وسيط (Intermediary)</strong> 
+بين المستخدم والـ Hardware (العتاد)، ويدير جميع موارد الحاسوب.</p>
+</div>
+<ul>
+<li>بدون نظام التشغيل، لا يمكنك تشغيل أي برنامج.</li>
+<li>هو الطبقة التي تجلس <strong>فوق الـ Hardware</strong> وتحت جميع التطبيقات.</li>
+</ul>
+<hr />
+<h2 id="2-system-layers">2. طبقات النظام (System Layers)</h2>
+<div class="highlight"><pre><span></span><code>  Applications (تطبيقات)  ← المستخدم يتعامل معها
+
+   Operating System (OS)   ← المدير والوسيط
+
+   Hardware (عتاد)         ← CPU, RAM, Disk...
+</code></pre></div>
+<div class="admonition lightbulb">
+<p class="admonition-title"><strong>توضيح: ليش الـ OS وسيط؟</strong></p>
+<p>تخيل إنك عايز تطبع ملف — التطبيق بيبعت أمر للـ OS، والـ OS هو اللي بيكلم الطابعة فعلياً. ما في تطبيق بيتكلم مع الـ Hardware مباشرة.</p>
+</div>
+<hr />
+<h2 id="3-os">3. المهام الرئيسية للـ OS</h2>
+<h3 id="1-resource-allocation-and-management">1. Resource Allocation and Management</h3>
+<h4 id="process-management">أ) Process Management (إدارة العمليات)</h4>
+<ul>
+<li>الـ <strong>Process</strong> هي: برنامج قيد التشغيل في الذاكرة. // زي تاب , او برنامج</li>
+<li>كل <strong>Process</strong> لها المساحة الخاصة بتاعتها , isolated space</li>
+<li>الــ 1 CPU يقدر يــ process at a time // حاليا فيه dual core , quad core 4</li>
+<li>الـ OS بيقرر مين  بياخد الـ CPU ومتى. (<strong>CPU Scheduling</strong>)</li>
+<li>بيدير الـ <strong>Multitasking</strong> (تشغيل أكثر من برنامج في نفس الوقت).</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title"><strong>Process vs Program</strong></p>
+<ul>
+<li>الــ <strong>Program:</strong> ملف موجود على الـ Disk (ساكن).</li>
+<li>الــ <strong>Process:</strong> نفس البرنامج لما بيتحمّل في الـ RAM ويبدأ ينفذ (متحرك).</li>
+</ul>
+</div>
+<h3 id="memory-management">ب) Memory Management (إدارة الذاكرة)</h3>
+<ul>
+<li>بيوزع الـ <strong>RAM</strong> على البرامج المختلفة.</li>
+<li>بيستخدم تقنية الـ <strong>Virtual Memory</strong> لتعويض نقص الـ RAM.</li>
+</ul>
+<div class="admonition lightbulb">
+<p class="admonition-title"><strong>Virtual Memory ببساطة:</strong></p>
+<p>لو عندك RAM 4GB والبرامج محتاجة 6GB، الـ OS بياخد جزء من الـ Hard Disk ويستخدمه كـ RAM مؤقت. بطيء لكن بيحل المشكلة.
+<img alt="Pasted image ٢٠٢٦٠٥١٨٢٢٥٠١٧.png" src="../images/Pasted%20image%20%D9%A2%D9%A0%D9%A2%D9%A6%D9%A0%D9%A5%D9%A1%D9%A8%D9%A2%D9%A2%D9%A5%D9%A0%D9%A1%D9%A7.png" />
+    Working Memory = RAM 
+    Virtual Memory = Hard Swap </p>
+<p><img alt="Pasted image ٢٠٢٦٠٥١٨٢٢٤٧٠٦.png" src="../images/Pasted%20image%20%D9%A2%D9%A0%D9%A2%D9%A6%D9%A0%D9%A5%D9%A1%D9%A8%D9%A2%D9%A2%D9%A4%D9%A7%D9%A0%D9%A6.png" />
+    RAM &gt;&gt; for your file you're workring on
+    Hard disk &gt;&gt; Actual location where file saved after </p>
+</div>
+<h3 id="file-system-management">ج) File System Management (إدارة نظام الملفات)</h3>
+<ul>
+<li>بينظّم الملفات والمجلدات على الـ Storage.</li>
+<li>بيتحكم في <strong>من يقدر يقرأ/يكتب</strong> أي ملف. (Permissions)</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title"><strong>File system</strong>  in Windows vs Linux</p>
+<ul>
+<li>Tree (Single Root)</li>
+<li>كل النظام عبارة عن <strong>شجرة واحدة</strong>   , لها <strong>Root واحد فقط</strong>
+كل الملفات مرتبطة ببعض تحت Root واحد - أي Path يبدأ من <code>/</code>
+مثال
+Linux / Unix:    <br />
+        /home/ahmed/file.txt</li>
+</ul>
+<p><img alt="Pasted image ٢٠٢٦٠٥١٨٢٢٥٧١٠.png" src="../images/Pasted%20image%20%D9%A2%D9%A0%D9%A2%D9%A6%D9%A0%D9%A5%D9%A1%D9%A8%D9%A2%D9%A2%D9%A5%D9%A7%D9%A1%D9%A0.png" /> 
+ -- </p>
+<ul>
+<li>Multiple Roots</li>
+<li>عندك <strong>أكتر من Root منفصل</strong>  , كل واحد شجرة مستقلة</li>
+<li>كل Drive = Root مستقل , مفيش شجرة موحدة</li>
+</ul>
+</div>
+<p>مثال</p>
+<blockquote>
+<p>Windows:
+        C:\Users\ahmed
+        D:\Movies\film.mp4 <br />
+<img alt="Pasted image ٢٠٢٦٠٥١٨٢٢٥٧٥٠.png" src="../images/Pasted%20image%20%D9%A2%D9%A0%D9%A2%D9%A6%D9%A0%D9%A5%D9%A1%D9%A8%D9%A2%D9%A2%D9%A5%D9%A7%D9%A5%D9%A0.png" />
+</p>
+</blockquote>
+<h3 id="device-management">د) Device Management (إدارة الأجهزة)</h3>
+<ul>
+<li>بيتواصل مع الأجهزة المتصلة عن طريق <strong>Drivers (تعريفات)</strong>.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title"><strong>Driver ( تعريف جهاز خارجي )</strong></p>
+<p>برنامج صغير بيعرّف الـ OS إزاي يتكلم مع جهاز معين (طابعة، كارت شاشة...).</p>
+</div>
+<h3 id="security-access-control">هـ) Security &amp; Access Control (الأمان والتحكم في الوصول)</h3>
+<ul>
+<li>الـ OS بيدير <strong>User Accounts</strong> (حسابات المستخدمين) وصلاحياتهم.</li>
+<li>كل مستخدم له Space / Permissions</li>
+<li></li>
+</ul>
+<h3 id="-security-networking">ذ) مهام اخري - Security / Networking</h3>
+<ul>
+<li>الـ OS بيدير ان يبقي  لــ <ul>
+<li>كل User عنده:
+Home directory (مساحة خاصة) - UID (User ID) - Groups (صلاحيات مشتركة)</li>
+<li>كل File/Resource له:
+Owner - Permissions (read / write / execute)</li>
+</ul>
+</li>
+<li>الشبكة مش بتوصل للـ computer بس<br />
+هي بتوصل <strong>لـ process معين داخل الجهاز</strong>  </li>
+<li>IP address = عنوان الجهاز</li>
+<li>Port = عنوان التطبيق داخل الجهاز
+%%</li>
+</ul>
+<h4 id="data">كيف data بتمشي داخل النظام</h4>
+<ol>
+<li>Incoming packet</li>
+<li>packet يدخل عبر Network Interface Card (NIC)</li>
+<li>OS يستلم packet</li>
+<li>IP check</li>
+<li>يتأكد: هل هذا الجهاز هو destination IP؟</li>
+<li>Port mapping</li>
+<li>يشوف destination port:<ul>
+<li>80 → HTTP server</li>
+<li>443 → HTTPS</li>
+<li>22 → SSH</li>
+</ul>
+</li>
+<li>Forward to process</li>
+<li>OS يستخدم socket table</li>
+<li>يربط:<ul>
+<li>(IP + Port) → Process ID (PID) %%
+  فالـ OS هو الـ <strong>traffic controller</strong> :</li>
+</ul>
+</li>
+<li>داخليًا: من يقرأ/يكتب</li>
+<li>خارجيًا: من يستقبل أي data وأين تذهب داخل النظام</li>
+</ol>
+<hr />
+<h2 id="4">4. أنواع أنظمة التشغيل الشائعة</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">النوع</th>
+<th style="text-align: center;">أمثلة</th>
+<th style="text-align: center;">الاستخدام الشائع</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Windows</strong></td>
+<td style="text-align: center;">Windows 10, 11</td>
+<td style="text-align: center;">سطح المكتب، الشركات</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Linux</strong></td>
+<td style="text-align: center;">Ubuntu, CentOS, Debian</td>
+<td style="text-align: center;">Servers، DevOps، Development</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>macOS</strong></td>
+<td style="text-align: center;">macOS Ventura</td>
+<td style="text-align: center;">سطح المكتب (Apple)</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Mobile OS</strong></td>
+<td style="text-align: center;">Android, iOS</td>
+<td style="text-align: center;">الهواتف</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-linux">5. ليه Linux تحديداً؟</h2>
+<div class="admonition lightbulb">
+<p class="admonition-title">الــ<strong>Linux في عالم الـ Servers</strong></p>
+<p>أكثر من <strong>90%</strong> من الـ Servers على الإنترنت بتشتغل بـ Linux. 
+لو شغلتك DevOps، Cloud، أو Backend — لازم تعرف Linux.</p>
+<ul>
+<li>مميزاته : <ul>
+<li><strong>Open Source:</strong> مجاني ومفتوح المصدر.</li>
+<li><strong>Stable &amp; Secure:</strong> مستقر وآمن.</li>
+<li><strong>Lightweight:</strong> ممكن يشتغل على أجهزة قديمة أو ضعيفة.</li>
+<li><strong>Customizable:</strong> تقدر تعدّل فيه زي ما تحب .</li>
+</ul>
+</li>
+</ul>
+</div>
+<hr />
+<h2 id="6-linux">6. مكونات الـ Linux</h2>
+<div class="highlight"><pre><span></span><code>  Applications / Shell    
+
+  Linux Kernel (النواة)     ← القلب الأساسي
+
+  Hardware                
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title"><strong>Kernel (النواة)</strong></p>
+<p><img alt="Pasted image ٢٠٢٦٠٥١٨٢٣٤٢٤٠.png" src="../images/Pasted%20image%20%D9%A2%D9%A0%D9%A2%D9%A6%D9%A0%D9%A5%D9%A1%D9%A8%D9%A2%D9%A3%D9%A4%D9%A2%D9%A4%D9%A0.png" />
+هو الجزء الأساسي من الـ OS , بيتحكم مباشرة في الـ Hardware , كل توزيعات Linux بتشترك في نفس الـ Kernel تقريباً. </p>
+<ul>
+<li>الـ <strong>Kernel</strong> هو أول layer فعلي شغال بعد bootloader، وهو المسؤول عن التحكم الكامل في موارد الجهاز.</li>
+<li>
+<p>الوظيفة للـ Kernel : 
+1) Hardware Control
+2) Process Management
+3) Memory Management
+4) File System
+5) System Calls Interface</p>
+<ul>
+<li>الـ Kernel هو:</li>
+<li>Resource allocator</li>
+<li>Hardware abstraction layer</li>
+<li>Security boundary</li>
+<li>Execution manager</li>
+</ul>
+</li>
+</ul>
+</div>
+<blockquote>
+<p>في الـ Kernel :<br />
+Kernel starts the process for app , Allocates resources to app, Cleans up the resources when app shuts town
+بدونه:<br />
+النظام كله يبقى hardware بدون تحكم، والـ processes تبقى عشوائية بدون إدارة</p>
+</blockquote>
+<p>%%
+    &gt; <img alt="Pasted image ٢٠٢٦٠٥١٨٢٣٥٧٢٧.png" src="../images/Pasted%20image%20%D9%A2%D9%A0%D9%A2%D9%A6%D9%A0%D9%A5%D9%A1%D9%A8%D9%A2%D9%A3%D9%A5%D9%A7%D9%A2%D9%A7.png" /></p>
+<h4 id="kernel">الوظيفة للـ Kernel :</h4>
+<p>1) Hardware Control
+يتحكم في كل الـ hardware عبر Device Drivers
+CPU, RAM, Disk, Network كلها لا تُستخدم مباشرة من البرامج
+2) Process Management
+يشغل ويوقف البرامج:
+Scheduler
+يحدد مين ياخد CPU time
+Dispatcher
+ينقل التنفيذ بين processes
+context switching
+3) Memory Management
+توزيع RAM بين processes
+حماية memory isolation
+virtual memory + paging
+4) File System
+تنظيم الداتا على disk
+permissions + access control
+file abstraction بدل raw disk blocks
+5) System Calls Interface
+البرامج ما تتكلمش مع hardware مباشرة
+تتكلم مع kernel عبر syscalls :
+open()
+read()
+write(
+fork()
+%%</p>
+<h3 id="kernel_1">كيف نتعامل مع الـ Kernel</h3>
+<ul>
+<li>Graphical User Interface - GUI <ul>
+<li>شائعة اكتر مع windows عشان ال user applications</li>
+</ul>
+</li>
+<li>Command Line Interface - CLI<ul>
+<li>شائعة اكتر مع ال linux / server لان مفيش gui / user app</li>
+</ul>
+</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Application Layer / <strong>Linux Distribution (توزيعة Linux)</strong></p>
+<p>اعلي الــ kernel فيه ال Application Layer واجهة المستخدم</p>
+</div>
+<p>الـ Kernel + مجموعة برامج + واجهة = <strong>Distribution (Distro)</strong>  </p>
+<blockquote>
+<p>أمثلة:
+ Ubuntu, Fedora, Debian, CentOS, Arch Linux</p>
+</blockquote>
+<ul>
+<li>
+<h3 id="main-operating-systems">Main Operating Systems</h3>
+<p>Linux - Windows - MacOS
+<img alt="Pasted image ٢٠٢٦٠٥١٩٠٠١٦٢٣.png" src="../images/Pasted%20image%20%D9%A2%D9%A0%D9%A2%D9%A6%D9%A0%D9%A5%D9%A1%D9%A9%D9%A0%D9%A0%D9%A1%D9%A6%D9%A2%D9%A3.png" /></p>
+</li>
+</ul>
+<p>كل OS له نسخ (Distributions / Versions)
+Windows: 10, 11, Server editions
+Linux: Ubuntu, Fedora, Debian…
+macOS: Ventura, Sonoma…</p>
+<p>Kernel concept stays the same
+1. Windows 
+    - Kernel: NT Kernel
+بيتطور مع كل إصدار
+2. Linux 
+    - Kernel: Linux Kernel
+نفس الاسم، لكن:
+كل version = kernel version مختلف (5.x → 6.x)
+3. macOS
+    - Kernel: XNU
+يتغير مع كل macOS release
+فيه additions/removals في drivers + security layer</p>
+<p>** محلوظة 
+ - ال MacOS مبني علي ال unix لكن الـ kernel بتاعته مختلفة اسمها darwen 
+ -  الـ android منبي علي lunix , يعني فيه HW فوقه فيه Linux kernel وبعده طبقة الاندرويد وال user app زي google play apps<br />
+ -  MacOS and Linux: Command Line, File
+structure etc. similar
+ * Whereas Windows is completely different</p>
+<p>### الفرق بين ال  Client OS vs Server OS</p>
+<ol>
+<li><strong>Personal Computer OS (Client OS)</strong>
+أنظمة موجهة للمستخدم العادي مع GUI :</li>
+<li>الــ Desktop Computers :<ul>
+<li>Windows (Windows 10 / 11)</li>
+<li>macOS</li>
+<li>Desktop Linux (Ubuntu Desktop, Fedora Workstation)
+أجهزة محمولة أو embedded:</li>
+</ul>
+</li>
+<li>Android (Linux-based)</li>
+<li>iOS</li>
+<li>
+<p>خصائص :
+        * GUI (Graphical User Interface)
+        * User applications
+        * Drivers for peripherals
+            - Focus: usability + productivity</p>
+</li>
+<li>
+<p><strong>Server OS</strong>
+أنظمة مخصصة للخوادم:</p>
+</li>
+<li>Linux Server (Ubuntu Server, CentOS/RHEL, Debian Server)</li>
+<li>Windows Server</li>
+<li>خصائص:
+        * No GUI by default (optional) 
+        * Headless operation (SSH / remote management)
+        * High performance + stability
+        * Long uptime
+        * Security hardened</li>
+</ol>
+<hr />
+<hr />
+<h2 id="7">7. ملخص سريع</h2>
+<table>
+<thead>
+<tr>
+<th>المفهوم</th>
+<th>المعنى</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>OS</strong></td>
+<td>وسيط بين المستخدم والـ Hardware</td>
+</tr>
+<tr>
+<td><strong>Process</strong></td>
+<td>برنامج شغّال في الـ RAM</td>
+</tr>
+<tr>
+<td><strong>Kernel</strong></td>
+<td>قلب الـ OS، يتحكم في الـ Hardware</td>
+</tr>
+<tr>
+<td><strong>Driver</strong></td>
+<td>برنامج يعرّف الـ OS بجهاز معين</td>
+</tr>
+<tr>
+<td><strong>Distro</strong></td>
+<td>Linux + برامج + واجهة مجمّعين معاً</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<blockquote>
+<p><strong>التالي:</strong> <a href="../02%20-%20Introduction%20to%20Virtualization%20and%20Virtual%20Machines/">02 - Introduction to Virtualization and Virtual Machines</a></p>
+</blockquote>
+<hr />
+<p>Notes by. Ahmed Mousa<br />
+شكر خاص<br />
+Eng. <a href="https://www.youtube.com/@a0xEid">Ahmed Eid</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  عد إلى الأعلى
+</button>
+        
+      </main>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.top", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u062a\u0645 \u0627\u0644\u0646\u0633\u062e \u0627\u0644\u0649 \u0627\u0644\u062d\u0627\u0641\u0638\u0629", "clipboard.copy": "\u0646\u0633\u062e \u0625\u0644\u0649 \u0627\u0644\u062d\u0627\u0641\u0638\u0629", "search.result.more.one": "\u0623\u0643\u062b\u0631 \u0645\u0646 1 \u0641\u064a \u0647\u0630\u0647 \u0627\u0644\u0635\u0641\u062d\u0629", "search.result.more.other": "\u0623\u0643\u062b\u0631 \u0645\u0646 # \u0641\u064a \u0647\u0630\u0647 \u0627\u0644\u0635\u0641\u062d\u0629", "search.result.none": "\u0644\u0627 \u062a\u0648\u062c\u062f \u0646\u062a\u0627\u0626\u062c", "search.result.one": "\u0646\u062a\u0627\u0626\u062c \u0627\u0644\u0628\u062d\u062b \u0645\u0633\u062a\u0646\u062f \u0648\u0627\u062d\u062f", "search.result.other": "\u0646\u062a\u0627\u0626\u062c \u0627\u0644\u0628\u062d\u062b # \u0645\u0633\u062a\u0646\u062f\u0627\u062a", "search.result.placeholder": "\u0627\u0643\u062a\u0628 \u0644\u0628\u062f\u0621 \u0627\u0644\u0628\u062d\u062b", "search.result.term.missing": "\u0645\u0641\u0642\u0648\u062f", "select.version": "\u0625\u062e\u062a\u0631 \u0627\u0644\u0625\u0635\u062f\u0627\u0631"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

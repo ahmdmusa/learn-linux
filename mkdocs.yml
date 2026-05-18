@@ -1,0 +1,40 @@
+site_name: تعلم لينكس
+theme:
+  name: material
+  custom_dir: overrides
+  language: ar
+  features:
+    - navigation.tabs
+    - navigation.top
+    - toc.integrate
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+  font: false
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
+plugins:
+  - search
+  - callouts
+
+nav:
+  - الرئيسية: Index.md
+  - Introduction to OS: 01 - Introduction to Operating Systems.md
+  - Virtualization: 02 - Introduction to Virtualization and Virtual Machines.md
+  - Setup Linux VM: 03 - Setup Linux Virtual Machine.md
+  - Linux File System: 04 - Linux File System.md
+  - GUI Vs CLI: 05 - GUI Vs Command Line Interface.md
+  - Basic Commands: 06 - Basic Linux Commands.md
+  - Install Software: 07 - How to Install Software in Linux.md
+  - Vim Editor: 08 - Vi and Vim Text Editors.md
+  - User Accounts: 09 - Linux User Accounts.md
+  - Permissions: 10 - File Ownership and Permissions.md
+  - Pipes & Redirects: 11 - Pipes and Redirects.md

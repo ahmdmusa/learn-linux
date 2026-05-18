@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* Global Font */
+*, body, .md-content, .md-nav, .md-header {
+  font-family: 'Amiri', serif !important;
+}
+
+/* Header */
+.md-header {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%) !important;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3) !important;
+}
+
+.md-header__title {
+  font-size: 1.3rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px;
+}
+
+/* Hero - first h1 */
+.md-content article h1:first-child {
+  font-size: 2.8rem !important;
+  font-weight: 700 !important;
+  background: linear-gradient(135deg, #1a1a2e, #0f3460, #533483);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+  padding: 2rem 0 0.5rem;
+  border-bottom: none !important;
+}
+
+/* Subtitle */
+.md-content article h1:first-child + p {
+  text-align: center;
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+/* Tables */
+.md-content table {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
+  border: none !important;
+}
+
+.md-content table thead tr {
+  background: linear-gradient(135deg, #1a1a2e, #0f3460) !important;
+  color: white !important;
+}
+
+.md-content table thead th {
+  color: white !important;
+  font-weight: 700 !important;
+  padding: 1rem !important;
+}
+
+.md-content table tbody tr:hover {
+  background: #f0f4ff !important;
+  transition: background 0.2s ease;
+}
+
+.md-content table tbody td {
+  padding: 0.8rem 1rem !important;
+  border-color: #e8ecf0 !important;
+}
+
+/* Links */
+.md-content a {
+  color: #0f3460 !important;
+  font-weight: 600;
+  text-decoration: none !important;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.md-content a:hover {
+  border-bottom-color: #0f3460;
+}
+
+/* Headings */
+.md-content h2 {
+  color: #1a1a2e !important;
+  border-bottom: 3px solid #0f3460 !important;
+  padding-bottom: 0.5rem;
+  margin-top: 2.5rem !important;
+}
+
+/* Sidebar */
+.md-nav__link--active {
+  color: #0f3460 !important;
+  font-weight: 700 !important;
+}
+
+/* Badges */
+.md-content img[src*="shields.io"] {
+  margin: 0.3rem !important;
+}
+
+/* Fix table sizing */
+.md-content table {
+  width: 100% !important;
+  display: table !important;
+  table-layout: auto !important;
+}
+
+.md-content table td, 
+.md-content table th {
+  white-space: normal !important;
+  word-break: break-word !important;
+  max-width: 300px !important;
+}
+
+/* Admonitions */
+.md-typeset .admonition {
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+}
+
+/* Tables full width */
+.md-content__inner table {
+  width: 100% !important;
+  display: table !important;
+  table-layout: fixed !important;
+}
+
+.md-content__inner table td,
+.md-content__inner table th {
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+/* Title animation */
+.md-content article h1:first-child {
+  animation: fadeInDown 0.8s ease forwards;
+  border-bottom: 3px solid #0f3460 !important;
+  padding-bottom: 0.5rem !important;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Title animation override */
+h1 {
+  animation: fadeInDown 0.8s ease forwards !important;
+  border-bottom: 3px solid #0f3460 !important;
+  padding-bottom: 0.5rem !important;
+}
+
+/* Center subtitle */
+.md-content article h1 + p {
+  text-align: center !important;
+}
