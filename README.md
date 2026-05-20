@@ -10,4 +10,5 @@
 ### Built With
 - [MkDocs](https://www.mkdocs.org/)
 - GitHub Pages
-  ©️ ahmed mousa | 2026
+
+©️ ahmed mousa | 2026
